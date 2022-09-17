@@ -1,0 +1,19 @@
+BEGIN
+TRANSACTION;
+
+CREATE TABLE BOOK
+(
+    ID                        NUMBER(10)                NOT NULL,
+    TITLE                     VARCHAR2(100)             NOT NULL,
+    NUMBER_OF_PAGES           NUMBER(20)                NOT NULL
+);
+
+ALTER TABLE BOOK
+    ADD CONSTRAINT PK_BOOK PRIMARY KEY (ID);
+
+COMMENT ON TABLE BOOK IS 'Table of books';
+COMMENT ON COLUMN BOOK.ID IS 'Book identifier';
+COMMENT ON COLUMN BOOK.TITLE IS 'Book title ';
+COMMENT ON COLUMN BOOK.NUMBER_OF_PAGES IS 'Number of pages';
+
+COMMIT;
