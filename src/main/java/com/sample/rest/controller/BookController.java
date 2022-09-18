@@ -29,4 +29,10 @@ public class BookController implements BookApi {
         return BasicResponse.success(BookDTO.ofEntity(persistedBook));
     }
 
+    @Override
+    public BasicResponse<BookDTO> putBook(final BookDTO book) {
+        final Book persistedBook = this.bookService.update(book.toEntity());
+        return BasicResponse.success(BookDTO.ofEntity(persistedBook));
+    }
+
 }

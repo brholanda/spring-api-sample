@@ -22,18 +22,19 @@ public class BookDTO {
     @ApiModelProperty(value = "Number of pages", example = "123", required = true)
     private Long numberOfPages;
 
+    public Book toEntity() {
+        return Book.builder()
+                .id(this.id)
+                .title(this.title)
+                .numberOfPages(this.numberOfPages)
+                .build();
+    }
+
     public static BookDTO ofEntity(final Book book) {
         return BookDTO.builder()
                 .id(book.getId())
                 .title(book.getTitle())
                 .numberOfPages(book.getNumberOfPages())
-                .build();
-    }
-
-    public Book toEntity() {
-        return Book.builder()
-                .title(this.title)
-                .numberOfPages(this.numberOfPages)
                 .build();
     }
 }
