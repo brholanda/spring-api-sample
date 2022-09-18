@@ -1,6 +1,7 @@
 package com.sample.rest.controller;
 
 import com.sample.dto.BookDTO;
+import com.sample.dto.BookPostMethodDTO;
 import com.sample.http.BasicResponse;
 import com.sample.model.Book;
 import com.sample.rest.api.BookApi;
@@ -20,6 +21,12 @@ public class BookController implements BookApi {
     public BasicResponse<BookDTO> getBookByTitle(final String title) {
         final Book book = this.bookService.findByTitle(title);
         return BasicResponse.success(BookDTO.ofEntity(book));
+    }
+
+    @Override
+    public BasicResponse<BookDTO> postBook(final BookPostMethodDTO book) {
+        final Book persistedBook = this.bookService.save(book.toEntity());
+        return BasicResponse.success(BookDTO.ofEntity(persistedBook));
     }
 
 }

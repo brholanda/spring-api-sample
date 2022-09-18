@@ -16,10 +16,10 @@ public class BookDTO {
     @ApiModelProperty(value = "Book id", example = "1")
     private Long id;
 
-    @ApiModelProperty(value = "Book Title", example = "Lorem Ipsum")
+    @ApiModelProperty(value = "Book Title", example = "Lorem Ipsum", required = true)
     private String title;
 
-    @ApiModelProperty(value = "Number of pages", example = "123")
+    @ApiModelProperty(value = "Number of pages", example = "123", required = true)
     private Long numberOfPages;
 
     public static BookDTO ofEntity(final Book book) {
@@ -27,6 +27,13 @@ public class BookDTO {
                 .id(book.getId())
                 .title(book.getTitle())
                 .numberOfPages(book.getNumberOfPages())
+                .build();
+    }
+
+    public Book toEntity() {
+        return Book.builder()
+                .title(this.title)
+                .numberOfPages(this.numberOfPages)
                 .build();
     }
 }
